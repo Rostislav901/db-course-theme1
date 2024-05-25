@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Реалізація інформаційного та програмного забезпечення | Система організації та управління опитуваннями експертів</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/db-course-theme1/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="description" content="Курсова робота з дисципліни &quot;Бази даних&quot;">
+    
+    <link rel="preload" href="/db-course-theme1/assets/css/0.styles.d5a225ae.css" as="style"><link rel="preload" href="/db-course-theme1/assets/js/app.a3af5042.js" as="script"><link rel="preload" href="/db-course-theme1/assets/js/2.0091a01b.js" as="script"><link rel="preload" href="/db-course-theme1/assets/js/1.c514b243.js" as="script"><link rel="preload" href="/db-course-theme1/assets/js/38.610836e9.js" as="script"><link rel="prefetch" href="/db-course-theme1/assets/js/10.e55adb26.js"><link rel="prefetch" href="/db-course-theme1/assets/js/13.143540f4.js"><link rel="prefetch" href="/db-course-theme1/assets/js/14.94c7d917.js"><link rel="prefetch" href="/db-course-theme1/assets/js/15.570e3662.js"><link rel="prefetch" href="/db-course-theme1/assets/js/16.df81cf96.js"><link rel="prefetch" href="/db-course-theme1/assets/js/17.6db2bb35.js"><link rel="prefetch" href="/db-course-theme1/assets/js/18.5c5e592f.js"><link rel="prefetch" href="/db-course-theme1/assets/js/19.0a1e6ff2.js"><link rel="prefetch" href="/db-course-theme1/assets/js/20.50bdfbe1.js"><link rel="prefetch" href="/db-course-theme1/assets/js/21.39425e04.js"><link rel="prefetch" href="/db-course-theme1/assets/js/22.d2077878.js"><link rel="prefetch" href="/db-course-theme1/assets/js/23.3ec6ef11.js"><link rel="prefetch" href="/db-course-theme1/assets/js/24.6b41f770.js"><link rel="prefetch" href="/db-course-theme1/assets/js/25.9b82b3b9.js"><link rel="prefetch" href="/db-course-theme1/assets/js/26.590bbba7.js"><link rel="prefetch" href="/db-course-theme1/assets/js/27.ffb51423.js"><link rel="prefetch" href="/db-course-theme1/assets/js/28.8bb2fae9.js"><link rel="prefetch" href="/db-course-theme1/assets/js/29.0f027b3a.js"><link rel="prefetch" href="/db-course-theme1/assets/js/3.3a389e6a.js"><link rel="prefetch" href="/db-course-theme1/assets/js/30.da1c4dad.js"><link rel="prefetch" href="/db-course-theme1/assets/js/31.e35d53ea.js"><link rel="prefetch" href="/db-course-theme1/assets/js/32.dbc28851.js"><link rel="prefetch" href="/db-course-theme1/assets/js/33.a2c9d0d7.js"><link rel="prefetch" href="/db-course-theme1/assets/js/34.1ce502a1.js"><link rel="prefetch" href="/db-course-theme1/assets/js/35.a3b93646.js"><link rel="prefetch" href="/db-course-theme1/assets/js/36.a04e19a8.js"><link rel="prefetch" href="/db-course-theme1/assets/js/37.a8f29b92.js"><link rel="prefetch" href="/db-course-theme1/assets/js/39.0b0f73c6.js"><link rel="prefetch" href="/db-course-theme1/assets/js/4.7ff1b1d7.js"><link rel="prefetch" href="/db-course-theme1/assets/js/40.9afa6984.js"><link rel="prefetch" href="/db-course-theme1/assets/js/41.61aa90e8.js"><link rel="prefetch" href="/db-course-theme1/assets/js/5.82374277.js"><link rel="prefetch" href="/db-course-theme1/assets/js/6.0ca3a281.js"><link rel="prefetch" href="/db-course-theme1/assets/js/7.d4c176d6.js"><link rel="prefetch" href="/db-course-theme1/assets/js/8.ec0c7863.js"><link rel="prefetch" href="/db-course-theme1/assets/js/9.3cefd8e0.js"><link rel="prefetch" href="/db-course-theme1/assets/js/vendors~docsearch.a7a1cc5b.js">
+    <link rel="stylesheet" href="/db-course-theme1/assets/css/0.styles.d5a225ae.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/db-course-theme1/" class="home-link router-link-active"><!----> <span class="site-name">Система організації та управління опитуваннями експертів</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/db-course-theme1/" class="nav-link">
+  Початок
+</a></div> <a href="https://github.com/shmatkoden/db-course-theme1" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/db-course-theme1/" class="nav-link">
+  Початок
+</a></div> <a href="https://github.com/shmatkoden/db-course-theme1" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/db-course-theme1/intro/" class="sidebar-link">Вступ</a></li><li><section class="sidebar-group collapsable depth-0"><a href="/db-course-theme1/requirements/" class="sidebar-heading clickable"><span>Розроблення загальних вимог до системи</span> <span class="arrow right"></span></a> <!----></section></li><li><a href="/db-course-theme1/use%20cases/" class="sidebar-link">Розроблення вимог до функціональности системи</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/db-course-theme1/use%20cases/#перелік-існуючих-документів-у-нашому-проекті" class="sidebar-link">Перелік існуючих документів у нашому проекті</a></li><li class="sidebar-sub-header"><a href="/db-course-theme1/use%20cases/#загальна-схема" class="sidebar-link">Загальна схема</a></li><li class="sidebar-sub-header"><a href="/db-course-theme1/use%20cases/#схема-кліента" class="sidebar-link">Схема кліента</a></li><li class="sidebar-sub-header"><a href="/db-course-theme1/use%20cases/#схема-експерта" class="sidebar-link">Схема експерта</a></li><li class="sidebar-sub-header"><a href="/db-course-theme1/use%20cases/#сценаріі-використання" class="sidebar-link">Сценарії використання</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/db-course-theme1/use%20cases/#user-create-account" class="sidebar-link">USER_CREATEACCOUNT</a></li><li class="sidebar-sub-header"><a href="/db-course-theme1/use%20cases/#user-log-in" class="sidebar-link">USER_LOGIN</a></li><li class="sidebar-sub-header"><a href="/db-course-theme1/use%20cases/#client-create-survey" class="sidebar-link">CLIENT_CREATESURVEY</a></li><li class="sidebar-sub-header"><a href="/db-course-theme1/use%20cases/#client-edit-survey" class="sidebar-link">CLIENT_EDITSURVEY</a></li><li class="sidebar-sub-header"><a href="/db-course-theme1/use%20cases/#client-delete-survey" class="sidebar-link">CLIENT_DELETESURVEY</a></li><li class="sidebar-sub-header"><a href="/db-course-theme1/use%20cases/#expert-answer-survey" class="sidebar-link">EXPERT_ANSWERSURVEY</a></li><li class="sidebar-sub-header"><a href="/db-course-theme1/use%20cases/#client-view-survey-results" class="sidebar-link">CLIENT_VIEWSURVEY_RESULTS</a></li><li class="sidebar-sub-header"><a href="/db-course-theme1/use%20cases/#expert-view-available-surveys" class="sidebar-link">EXPERT_VIEWAVAILABLE_SURVEYS</a></li></ul></li></ul></li><li><a href="/db-course-theme1/design/" class="sidebar-link">Проектування інформаційного забезпечення</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/db-course-theme1/design/#модель-бізнес-об-єктів" class="sidebar-link">Модель бізнес-об'єктів</a></li><li class="sidebar-sub-header"><a href="/db-course-theme1/design/#er-модель" class="sidebar-link">ER-модель</a></li><li class="sidebar-sub-header"><a href="/db-course-theme1/design/#реляціина-схема" class="sidebar-link">Реляційна схема</a></li></ul></li><li><a href="/db-course-theme1/software/" aria-current="page" class="active sidebar-link">Реалізація інформаційного та програмного забезпечення</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/db-course-theme1/software/#sql-скрипт-для-створення-на-початкового-наповнення-бази-даних" class="sidebar-link">SQL-скрипт для створення на початкового наповнення бази даних</a></li><li class="sidebar-sub-header"><a href="/db-course-theme1/software/#restfull-сервіс-для-управління-даними" class="sidebar-link">RESTfull сервіс для управління даними</a></li></ul></li><li><a href="/db-course-theme1/test/" class="sidebar-link">Тестування працездатності системи</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/db-course-theme1/test/#запит-на-авторизацію-post-project-api-login" class="sidebar-link">Запит на авторизацію POST project/api/login</a></li><li class="sidebar-sub-header"><a href="/db-course-theme1/test/#запит-на-реєєстрацію-post-project-api-user-create-повертає-id-створеного-юзера" class="sidebar-link">Запит на реєєстрацію  POST project/api/user/create повертає id створеного юзера</a></li><li class="sidebar-sub-header"><a href="/db-course-theme1/test/#запит-на-пошук-юзера-по-id-get-project-api-user-id-num" class="sidebar-link">Запит на пошук юзера по id  GET project/api/user/?id=num</a></li><li class="sidebar-sub-header"><a href="/db-course-theme1/test/#запит-на-оновлення-данних-юзер-по-id-put-project-api-user-update-id-num" class="sidebar-link">Запит на оновлення данних юзер по id  PUT project/api/user/update/?id=num</a></li><li class="sidebar-sub-header"><a href="/db-course-theme1/test/#запит-на-показ-всих-юзерів-get-project-api-users-all" class="sidebar-link">Запит на показ всих юзерів GET project/api/users/all</a></li></ul></li><li><a href="/db-course-theme1/conclusion/" class="sidebar-link">Висновки</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="реалізація-інформаціиного-та-програмного-забезпечення"><a href="#реалізація-інформаціиного-та-програмного-забезпечення" class="header-anchor">#</a> Реалізація інформаційного та програмного забезпечення</h1> <h2 id="sql-скрипт-для-створення-на-початкового-наповнення-бази-даних"><a href="#sql-скрипт-для-створення-на-початкового-наповнення-бази-даних" class="header-anchor">#</a> SQL-скрипт для створення на початкового наповнення бази даних</h2> <div class="language-sql extra-class"><pre class="language-sql"><code>
+
+<span class="token keyword">SET</span> <span class="token variable">@OLD_UNIQUE_CHECKS</span><span class="token operator">=</span>@<span class="token variable">@UNIQUE_CHECKS</span><span class="token punctuation">,</span> UNIQUE_CHECKS<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">SET</span> <span class="token variable">@OLD_FOREIGN_KEY_CHECKS</span><span class="token operator">=</span>@<span class="token variable">@FOREIGN_KEY_CHECKS</span><span class="token punctuation">,</span> FOREIGN_KEY_CHECKS<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">SET</span> <span class="token variable">@OLD_SQL_MODE</span><span class="token operator">=</span>@<span class="token variable">@SQL_MODE</span><span class="token punctuation">,</span> SQL_MODE<span class="token operator">=</span><span class="token string">'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION'</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token comment">-- Schema survey_db</span>
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">SCHEMA</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> survey_db <span class="token keyword">DEFAULT</span> <span class="token keyword">CHARACTER</span> <span class="token keyword">SET</span> utf8<span class="token punctuation">;</span>
+<span class="token keyword">USE</span> survey_db<span class="token punctuation">;</span>
+
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token comment">-- Table survey_db.Users</span>
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> survey_db<span class="token punctuation">.</span>Users <span class="token punctuation">(</span>
+  id <span class="token keyword">INT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+  email <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">UNIQUE</span><span class="token punctuation">,</span>
+  nickname <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">UNIQUE</span><span class="token punctuation">,</span>
+  <span class="token keyword">level</span> <span class="token keyword">INT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+  password <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+  speciality_id <span class="token keyword">INT</span><span class="token punctuation">,</span>
+  <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">INDEX</span> fk_Users_Speciality_idx <span class="token punctuation">(</span>speciality_id <span class="token keyword">ASC</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">CONSTRAINT</span> fk_Users_Speciality
+    <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>speciality_id<span class="token punctuation">)</span>
+    <span class="token keyword">REFERENCES</span> survey_db<span class="token punctuation">.</span>Speciality <span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+    <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">NO</span> <span class="token keyword">ACTION</span>
+    <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">NO</span> <span class="token keyword">ACTION</span>
+<span class="token punctuation">)</span> <span class="token keyword">ENGINE</span> <span class="token operator">=</span> <span class="token keyword">InnoDB</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token comment">-- Table survey_db.Speciality</span>
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> survey_db<span class="token punctuation">.</span>Speciality <span class="token punctuation">(</span>
+  id <span class="token keyword">INT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+  name <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">UNIQUE</span><span class="token punctuation">,</span>
+  <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+<span class="token punctuation">)</span> <span class="token keyword">ENGINE</span> <span class="token operator">=</span> <span class="token keyword">InnoDB</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token comment">-- Table survey_db.Survey</span>
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> survey_db<span class="token punctuation">.</span>Survey <span class="token punctuation">(</span>
+  id <span class="token keyword">INT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+  title <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+  description <span class="token keyword">TEXT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+  created_at <span class="token keyword">DATETIME</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+  user_id <span class="token keyword">INT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+  <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">INDEX</span> fk_Survey_User_idx <span class="token punctuation">(</span>user_id <span class="token keyword">ASC</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">CONSTRAINT</span> fk_Survey_User
+    <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>user_id<span class="token punctuation">)</span>
+    <span class="token keyword">REFERENCES</span> survey_db<span class="token punctuation">.</span>Users <span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+    <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">NO</span> <span class="token keyword">ACTION</span>
+    <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">NO</span> <span class="token keyword">ACTION</span>
+<span class="token punctuation">)</span> <span class="token keyword">ENGINE</span> <span class="token operator">=</span> <span class="token keyword">InnoDB</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token comment">-- Table survey_db.Question</span>
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> survey_db<span class="token punctuation">.</span>Question <span class="token punctuation">(</span>
+  id <span class="token keyword">INT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+  <span class="token keyword">text</span> <span class="token keyword">TEXT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+  survey_id <span class="token keyword">INT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+  <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">INDEX</span> fk_Question_Survey_idx <span class="token punctuation">(</span>survey_id <span class="token keyword">ASC</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">CONSTRAINT</span> fk_Question_Survey
+    <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>survey_id<span class="token punctuation">)</span>
+    <span class="token keyword">REFERENCES</span> survey_db<span class="token punctuation">.</span>Survey <span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+    <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">NO</span> <span class="token keyword">ACTION</span>
+    <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">NO</span> <span class="token keyword">ACTION</span>
+<span class="token punctuation">)</span> <span class="token keyword">ENGINE</span> <span class="token operator">=</span> <span class="token keyword">InnoDB</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token comment">-- Table survey_db.Answer</span>
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> survey_db<span class="token punctuation">.</span>Answer <span class="token punctuation">(</span>
+  id <span class="token keyword">INT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+  <span class="token keyword">text</span> <span class="token keyword">TEXT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+  question_id <span class="token keyword">INT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+  <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">INDEX</span> fk_Answer_Question_idx <span class="token punctuation">(</span>question_id <span class="token keyword">ASC</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">CONSTRAINT</span> fk_Answer_Question
+    <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>question_id<span class="token punctuation">)</span>
+    <span class="token keyword">REFERENCES</span> survey_db<span class="token punctuation">.</span>Question <span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+    <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">NO</span> <span class="token keyword">ACTION</span>
+    <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">NO</span> <span class="token keyword">ACTION</span>
+<span class="token punctuation">)</span> <span class="token keyword">ENGINE</span> <span class="token operator">=</span> <span class="token keyword">InnoDB</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token comment">-- Table survey_db.Grant</span>
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> survey_db<span class="token punctuation">.</span><span class="token keyword">Grant</span> <span class="token punctuation">(</span>
+  id <span class="token keyword">INT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+  create_time <span class="token keyword">DATETIME</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+  role_id <span class="token keyword">INT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+  user_id <span class="token keyword">INT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+  answer_id <span class="token keyword">INT</span><span class="token punctuation">,</span>
+  survey_id <span class="token keyword">INT</span><span class="token punctuation">,</span>
+  <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">INDEX</span> fk_Grant_User_idx <span class="token punctuation">(</span>user_id <span class="token keyword">ASC</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">INDEX</span> fk_Grant_Role_idx <span class="token punctuation">(</span>role_id <span class="token keyword">ASC</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">INDEX</span> fk_Grant_Answer_idx <span class="token punctuation">(</span>answer_id <span class="token keyword">ASC</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">INDEX</span> fk_Grant_Survey_idx <span class="token punctuation">(</span>survey_id <span class="token keyword">ASC</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">CONSTRAINT</span> fk_Grant_User
+    <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>user_id<span class="token punctuation">)</span>
+    <span class="token keyword">REFERENCES</span> survey_db<span class="token punctuation">.</span>Users <span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+    <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">NO</span> <span class="token keyword">ACTION</span>
+    <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">NO</span> <span class="token keyword">ACTION</span><span class="token punctuation">,</span>
+  <span class="token keyword">CONSTRAINT</span> fk_Grant_Role
+    <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>role_id<span class="token punctuation">)</span>
+    <span class="token keyword">REFERENCES</span> survey_db<span class="token punctuation">.</span>Role <span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+    <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">NO</span> <span class="token keyword">ACTION</span>
+    <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">NO</span> <span class="token keyword">ACTION</span><span class="token punctuation">,</span>
+  <span class="token keyword">CONSTRAINT</span> fk_Grant_Answer
+    <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>answer_id<span class="token punctuation">)</span>
+    <span class="token keyword">REFERENCES</span> survey_db<span class="token punctuation">.</span>Answer <span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+    <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">NO</span> <span class="token keyword">ACTION</span>
+    <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">NO</span> <span class="token keyword">ACTION</span><span class="token punctuation">,</span>
+  <span class="token keyword">CONSTRAINT</span> fk_Grant_Survey
+    <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>survey_id<span class="token punctuation">)</span>
+    <span class="token keyword">REFERENCES</span> survey_db<span class="token punctuation">.</span>Survey <span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+    <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">NO</span> <span class="token keyword">ACTION</span>
+    <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">NO</span> <span class="token keyword">ACTION</span>
+<span class="token punctuation">)</span> <span class="token keyword">ENGINE</span> <span class="token operator">=</span> <span class="token keyword">InnoDB</span><span class="token punctuation">;</span>
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token comment">-- Table survey_db.Role</span>
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> survey_db<span class="token punctuation">.</span>Role <span class="token punctuation">(</span>
+  id <span class="token keyword">INT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+  name <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">UNIQUE</span><span class="token punctuation">,</span>
+  <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+<span class="token punctuation">)</span> <span class="token keyword">ENGINE</span> <span class="token operator">=</span> <span class="token keyword">InnoDB</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token comment">-- Table survey_db.State</span>
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> survey_db<span class="token punctuation">.</span>State <span class="token punctuation">(</span>
+  id <span class="token keyword">INT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+  name <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">UNIQUE</span><span class="token punctuation">,</span>
+  <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+<span class="token punctuation">)</span> <span class="token keyword">ENGINE</span> <span class="token operator">=</span> <span class="token keyword">InnoDB</span><span class="token punctuation">;</span>
+
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> survey_db<span class="token punctuation">.</span><span class="token keyword">Action</span> <span class="token punctuation">(</span>
+  id <span class="token keyword">INT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+  <span class="token keyword">date</span> <span class="token keyword">DATE</span> <span class="token punctuation">,</span>
+  grant_id <span class="token keyword">INT</span><span class="token punctuation">,</span>
+  state_id <span class="token keyword">INT</span><span class="token punctuation">,</span>
+  <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">INDEX</span> fk_Action_Grant_idx <span class="token punctuation">(</span>grant_id <span class="token keyword">ASC</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">INDEX</span> fk_Action_State_idx <span class="token punctuation">(</span>state_id <span class="token keyword">ASC</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">CONSTRAINT</span> fk_Action_Grant
+      <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>grant_id<span class="token punctuation">)</span>
+      <span class="token keyword">REFERENCES</span> survey_db<span class="token punctuation">.</span><span class="token keyword">Grant</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+      <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">NO</span> <span class="token keyword">ACTION</span>
+      <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">NO</span> <span class="token keyword">ACTION</span><span class="token punctuation">,</span>
+  <span class="token keyword">CONSTRAINT</span> fk_Action_State
+      <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>state_id<span class="token punctuation">)</span>
+      <span class="token keyword">REFERENCES</span> survey_db<span class="token punctuation">.</span>State <span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+      <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">NO</span> <span class="token keyword">ACTION</span>
+      <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">NO</span> <span class="token keyword">ACTION</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span> <span class="token keyword">ENGINE</span> <span class="token operator">=</span> <span class="token keyword">InnoDB</span><span class="token punctuation">;</span>
+
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> survey_db<span class="token punctuation">.</span>Skill <span class="token punctuation">(</span>
+  id <span class="token keyword">INT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+  <span class="token keyword">level</span> <span class="token keyword">INT</span><span class="token punctuation">,</span>
+  speciality_id <span class="token keyword">INT</span><span class="token punctuation">,</span>
+  user_id <span class="token keyword">INT</span><span class="token punctuation">,</span>
+  <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">INDEX</span> fk_Skill_Speciality_idx <span class="token punctuation">(</span>speciality_id <span class="token keyword">ASC</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">INDEX</span> fk_Skill_User_idx <span class="token punctuation">(</span>user_id <span class="token keyword">ASC</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+
+  <span class="token keyword">CONSTRAINT</span> fk_Action_Speciality
+        <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>speciality_id<span class="token punctuation">)</span>
+        <span class="token keyword">REFERENCES</span> survey_db<span class="token punctuation">.</span>Speciality <span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+        <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">NO</span> <span class="token keyword">ACTION</span>
+        <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">NO</span> <span class="token keyword">ACTION</span><span class="token punctuation">,</span>
+  <span class="token keyword">CONSTRAINT</span> fk_Action_User
+        <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>user_id<span class="token punctuation">)</span>
+        <span class="token keyword">REFERENCES</span> survey_db<span class="token punctuation">.</span>Users <span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+        <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">NO</span> <span class="token keyword">ACTION</span>
+        <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">NO</span> <span class="token keyword">ACTION</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span> <span class="token keyword">ENGINE</span> <span class="token operator">=</span> <span class="token keyword">InnoDB</span><span class="token punctuation">;</span>
+<span class="token keyword">SET</span> SQL_MODE<span class="token operator">=</span><span class="token variable">@OLD_SQL_MODE</span><span class="token punctuation">;</span>
+<span class="token keyword">SET</span> FOREIGN_KEY_CHECKS<span class="token operator">=</span><span class="token variable">@OLD_FOREIGN_KEY_CHECKS</span><span class="token punctuation">;</span>
+<span class="token keyword">SET</span> UNIQUE_CHECKS<span class="token operator">=</span><span class="token variable">@OLD_UNIQUE_CHECKS</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="restfull-сервіс-для-управління-даними"><a href="#restfull-сервіс-для-управління-даними" class="header-anchor">#</a> RESTfull сервіс для управління даними</h2> <p>Файл перенаправлення .htaccess:</p> <div class="language- extra-class"><pre class="language-text"><code>RewriteEngine On
+RewriteBase /
+
+RewriteRule .+ index.php
+</code></pre></div><ul><li>Основний файл на який приходять всі запити index.php:</li></ul> <div class="language- extra-class"><pre class="language-text"><code>&lt;?php
+
+require_once &quot;setting/setting.php&quot;;
+
+use \core\controllers\Controller;
+
+
+
+Controller::run();
+</code></pre></div><ul><li>файл Конролера який викликає всі необхідні методи Controller.php:</li></ul> <div class="language- extra-class"><pre class="language-text"><code>&lt;?php
+
+namespace core\controllers;
+
+use help\Registry;
+use core\commands\CommandResolver;
+class Controller
+{
+    private Registry $reg;
+    private function __construct()
+    {
+        $this-&gt;reg = Registry::instance();
+    }
+    public static function run() : void
+    {
+        $instance = new self();
+        $instance-&gt;init();
+        $instance-&gt;handleRequest();
+    }
+    public function handleRequest() : void
+    {
+         $request = $this-&gt;reg-&gt;getRequest();
+         $resolver = new CommandResolver();
+         $cmd = $resolver-&gt;getCommand($request);
+         $cmd-&gt;execute($request);
+    }
+    public function init() : void
+    {
+         $this-&gt;reg-&gt;getApplicationHelper()-&gt;init();
+    }
+}
+</code></pre></div><ul><li>Файл реєстру компонентів програми Registry.php:</li></ul> <div class="language- extra-class"><pre class="language-text"><code>&lt;?php
+
+namespace help;
+
+use core\requests\Request;
+
+class Registry
+{
+
+    private static ? Registry $instance;
+    private ? Request $request;
+    private ? ApplicationHelper $applicationHelper = null;
+    private ? Conf $conf = null;
+    private ? Conf $commands = null;
+    private function __construct()
+    {
+    }
+    public static function instance() : Registry
+    {
+        if(!isset(self::$instance)){
+            self::$instance = new self();
+        }
+        return  self::$instance;
+    }
+
+   public function setRequest(Request $request) : void
+   {
+       $this-&gt;request = $request;
+   }
+   public function getRequest() : Request
+   {
+       if(is_null($this-&gt;request))
+       {
+           throw  new \Exception(&quot;Request not request&quot;);
+       }
+       return  $this-&gt;request;
+   }
+   public function getApplicationHelper() : ApplicationHelper
+   {
+       if(is_null($this-&gt;applicationHelper))
+       {
+           $this-&gt;applicationHelper = new ApplicationHelper();
+       }
+       return  $this-&gt;applicationHelper;
+   }
+   public function setConf(Conf $conf) : void
+   {
+       $this-&gt;conf = $conf;
+   }
+   public function getConf() : Conf
+   {
+       if(is_null($this-&gt;conf))
+       {
+           $this-&gt;conf = new Conf();
+       }
+       return  $this-&gt;conf;
+   }
+   public function getCommands() : Conf
+   {
+        if(is_null($this-&gt;commands))
+        {
+            $this-&gt;commands = new Conf();
+        }
+        return  $this-&gt;commands;
+   }
+   public function setCommands(Conf $commands) : void
+   {
+       $this-&gt;commands = $commands;
+   }
+}
+</code></pre></div><ul><li>Файл який ініціалізує об'єкт запиту в залежності від умов ApplicationHelper.php :</li></ul> <div class="language- extra-class"><pre class="language-text"><code>&lt;?php
+
+namespace help;
+use \core\requests\CliRequest;
+use \core\requests\HttpRequest;
+use help\AppException;
+class ApplicationHelper
+{
+   private  Registry $reg;
+
+   public function __construct()
+   {
+       $this-&gt;reg = Registry::instance();
+   }
+   public function init() : void
+   {
+        if(defined(&quot;STDIN&quot;))
+        {
+            $request = new CliRequest();
+        }
+        else
+        {
+            $request = new HttpRequest();
+
+        }
+        $this-&gt;reg-&gt;setRequest($request);
+   }
+
+}
+</code></pre></div><ul><li>Файл який знаходить необхідну команду відносно запиту CommandResolver.php:</li></ul> <div class="language- extra-class"><pre class="language-text"><code>&lt;?php
+
+namespace core\commands;
+
+use core\requests\Request;
+use help\Registry;
+
+class CommandResolver
+{
+      private static \ReflectionClass $refcmd;
+      public function __construct()
+      {
+          self::$refcmd = new \ReflectionClass(Command::class);
+      }
+      public function getCommand(Request $request) : Command
+      {
+          $reg = Registry::instance();
+          $commands = $reg-&gt;getCommands();
+          $path = $request-&gt;getPath();
+          $method = $request-&gt;getMethod();
+          $class = $commands-&gt;get($path,$method);
+
+          if(is_null($class))
+          {
+              $request-&gt;addFeedback(&quot;Path not approved&quot;);
+          }
+          if(!class_exists($class))
+          {
+              $request-&gt;addFeedback(&quot;Command $class not found&quot;);
+          }
+          $refclass = new \ReflectionClass($class);
+          if(! ($refclass-&gt;isSubclassOf(self::$refcmd)))
+          {
+              $request-&gt;addFeedback(
+                  &quot;$refclass dont have type Command&quot;
+              );
+          }
+          return  $refclass-&gt;newInstance();
+      }
+}
+</code></pre></div><ul><li>Файл який починає пошук необхідного роуту Conf.php</li></ul> <div class="language- extra-class"><pre class="language-text"><code>&lt;?php
+
+namespace help;
+
+use core\commands\LoginCommand;
+use core\router\Router;
+
+class Conf
+{
+
+
+    public function get(string $path,string $method) : string
+    {
+        return  Router::instance()-&gt;getRoute($path,$method);
+    }
+
+}
+</code></pre></div><ul><li>Файл Роутер який в якому знаходяться  роути програми та реалізована функція пошуку необхідного роуту Router.php:</li></ul> <div class="language- extra-class"><pre class="language-text"><code>&lt;?php
+
+namespace core\router;
+
+use core\commands\CreateUserCommand;
+use core\commands\DefaultCommand;
+use core\commands\FindAllUsersCommand;
+use core\commands\FindUserByIdCommand;
+use core\commands\LoginCommand;
+use core\commands\UpdateUserCommand;
+
+final class Router
+{
+    private static ?Router $instance = null;
+    private string $default = DefaultCommand::class;
+    private array $routes;
+
+    private function __construct()
+    {
+        $this-&gt;routes = [
+            [&quot;pattern&quot; =&gt; &quot;/^\/api\/users\/all$/&quot;, &quot;command&quot; =&gt; FindAllUsersCommand::class, &quot;method&quot; =&gt; &quot;GET&quot;],
+            [&quot;pattern&quot; =&gt; &quot;/^\/api\/user\/\?id=\d+$/&quot;, &quot;command&quot; =&gt; FindUserByIdCommand::class, &quot;method&quot; =&gt; &quot;GET&quot;],
+            [&quot;pattern&quot; =&gt; &quot;/^\/api\/user\/create$/&quot;, &quot;command&quot; =&gt; CreateUserCommand::class, &quot;method&quot; =&gt; &quot;POST&quot;],
+            [&quot;pattern&quot; =&gt; &quot;/^\/api\/user\/update\/\?id=\d+$/&quot;, &quot;command&quot; =&gt; UpdateUserCommand::class, &quot;method&quot; =&gt; &quot;PUT&quot;],
+            [&quot;pattern&quot; =&gt; &quot;/^\/api\/login$/&quot;, &quot;command&quot; =&gt; LoginCommand::class, &quot;method&quot; =&gt; &quot;POST&quot;],
+        ];
+    }
+
+    public static function instance(): Router
+    {
+        if (is_null(self::$instance)) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+
+    public function getRoute(string $path, string $method): string
+    {
+        foreach ($this-&gt;routes as $route) {
+            if (preg_match($route['pattern'], $path) &amp;&amp; $method == $route['method']) {
+                return $route['command'];
+            }
+        }
+        return $this-&gt;default;
+    }
+}
+</code></pre></div><ul><li>Абстракний базовий файл команди Command.php:</li></ul> <div class="language- extra-class"><pre class="language-text"><code>&lt;?php
+
+namespace core\commands;
+
+use core\requests\Request;
+
+abstract class Command
+{
+
+    final public function __construct(){}
+    public function execute(Request $request) : void
+    {
+         $this-&gt;doExecute($request);
+    }
+    
+    abstract public function doExecute(Request $request) : void;
+
+}
+</code></pre></div><ul><li>Абастрактний базовий файл запиту Request.php:</li></ul> <div class="language- extra-class"><pre class="language-text"><code>&lt;?php
+
+namespace core\requests;
+
+abstract class Request
+{
+    protected array $properties = [];
+    protected array $feedback = [];
+    protected array $getParams = [];
+
+    protected array $postParams = [];
+    protected string|null $path = &quot;/&quot;;
+    protected string $method;
+    public function __construct()
+    {
+        $this-&gt;init();
+    }
+    abstract function init() : void;
+    public function setPath(string $path) : void
+    {
+        $this-&gt;path = $path;
+    }
+    public function getPath() : string
+    {
+        return  $this-&gt;path;
+    }
+    public function getProperty(string $key) : mixed
+    {
+        if(isset($this-&gt;properties[$key])) return $this-&gt;properties[$key];
+        return null;
+    }
+    public function addFeedback(string $msg)
+    {
+        $this-&gt;feedback[] = $msg;
+    }
+    public function getFeedbackString($separator = &quot;\n&quot;) : string
+    {
+        return implode($separator,$this-&gt;feedback);
+    }
+    public function clearFeedback() : void
+    {
+        $this-&gt;feedback = [];
+    }
+
+    public function getMethod(): string
+    {
+        return $this-&gt;method;
+    }
+
+    public function getGetParams(): array
+    {
+        return $this-&gt;getParams;
+    }
+
+    public function getPostParams(): array
+    {
+        return $this-&gt;postParams;
+    }
+
+}
+</code></pre></div><ul><li>Файл запиту  для http-запитів HttpRequest.php:</li></ul> <div class="language- extra-class"><pre class="language-text"><code>&lt;?php
+namespace core\requests;
+
+class HttpRequest extends Request
+{
+     public function init(): void
+     {
+         $this-&gt;properties = $_REQUEST;
+         $this-&gt;path = $_SERVER[&quot;REQUEST_URI&quot;];
+         $this-&gt;method = $_SERVER['REQUEST_METHOD'];
+         $this-&gt;getParams = $_GET;
+         $this-&gt;postParams = json_decode(file_get_contents('php://input'),true);
+         $this-&gt;path = (empty($this-&gt;path)) ? &quot;/&quot; : $this-&gt;path;
+     }
+}
+</code></pre></div><ul><li>Файл який відповідає за з'єднання з базою данних Base.php:</li></ul> <div class="language- extra-class"><pre class="language-text"><code>&lt;?php
+
+namespace database;
+
+class Base
+{
+    private static ?self $instance = null;
+    private function __construct(){}
+
+    public static function instance(): static
+    {
+        if(is_null(self::$instance)){
+            self::$instance = new static();
+        }
+
+        return self::$instance;
+    }
+
+    public function getDBConnectionLink() : \mysqli
+    {
+        return mysqli_connect('localhost','root','','survey_db','3306');
+    }
+}
+</code></pre></div><ul><li>Файл команди яка реалізує реєєстрацію CreateUserCommand.php:</li></ul> <div class="language- extra-class"><pre class="language-text"><code>&lt;?php
+
+namespace core\commands;
+
+use core\requests\Request;
+use database\Base;
+
+class CreateUserCommand extends Command
+{
+
+    public function doExecute(Request $request): void
+    {
+        $postData = $request-&gt;getPostParams();
+        $email = $postData['email'];
+        $nickname = $postData['nickname'];
+        $password = $postData['password'];
+
+        $connection = Base::instance()-&gt;getDBConnectionLink();
+
+        $sqlQuery = &quot;INSERT INTO survey_db.Users (email, nickname, password,level,speciality_id) 
+                     VALUES ('$email', '$nickname', '$password', 1, 2)&quot;;
+
+        $res = mysqli_query($connection,$sqlQuery);
+
+        if ($res) {
+            $userId = mysqli_insert_id($connection);
+            echo json_encode($userId);
+        } else {
+            echo null;
+        }
+    }
+}
+</code></pre></div><ul><li>Файл команди яка реалізує авторизацію LoginCommand.php:</li></ul> <div class="language- extra-class"><pre class="language-text"><code>&lt;?php
+namespace core\commands;
+use core\requests\Request;
+use database\Base;
+
+class LoginCommand extends Command
+{
+   public function doExecute(Request $request): void
+   {
+       $postData = $request-&gt;getPostParams();
+
+       $email = $postData['email'];
+       $password = $postData['password'];
+
+       $connection = Base::instance()-&gt;getDBConnectionLink();
+
+       $sqlQuery = &quot;SELECT * FROM Users WHERE email = '$email' LIMIT 1&quot;;
+
+       $response = mysqli_fetch_assoc(mysqli_query($connection,$sqlQuery));
+
+       $truePassword =  $response['password'];
+
+       if($truePassword === $password)
+       {
+           echo 'Authorization was successful';
+       }
+   }
+}
+</code></pre></div><ul><li>Файл команди яка реалізує пошук юзера за id FindUserByIdCommand.php:</li></ul> <div class="language- extra-class"><pre class="language-text"><code>&lt;?php
+
+namespace core\commands;
+
+use core\requests\Request;
+use database\Base;
+
+class FindUserByIdCommand extends Command
+{
+
+    public function doExecute(Request $request): void
+    {
+        $id =  $request-&gt;getGetParams()['id'];
+
+        $connection = Base::instance()-&gt;getDBConnectionLink();
+
+        $sqlQuery = &quot;SELECT * FROM survey_db.Users WHERE survey_db.Users.id=$id&quot;;
+
+        $response = mysqli_query($connection,$sqlQuery);
+
+        echo json_encode(mysqli_fetch_assoc($response));
+    }
+}
+</code></pre></div><ul><li>Файл команди яка реалізує пошук всих юзерів FindAllUsersCommand.php:</li></ul> <div class="language- extra-class"><pre class="language-text"><code>
+&lt;?php
+
+namespace core\commands;
+
+use core\requests\Request;
+use database\Base;
+
+class FindAllUsersCommand extends Command
+{
+
+    public function doExecute(Request $request): void
+    {
+         $connection = Base::instance()-&gt;getDBConnectionLink();
+
+         $sqlQuery = &quot;SELECT * FROM survey_db.Users&quot;;
+
+         $response = mysqli_query($connection,$sqlQuery);
+         for ($data = []; $row = mysqli_fetch_assoc($response); $data[] = $row);
+
+         echo json_encode($data);
+    }
+}
+</code></pre></div><ul><li>Файл команди яка реалізує зміни UpdateUserCommand.php:</li></ul> <div class="language- extra-class"><pre class="language-text"><code>&lt;?php
+
+namespace core\commands;
+
+use core\requests\Request;
+use database\Base;
+
+class UpdateUserCommand extends Command
+{
+
+    public function doExecute(Request $request): void
+    {
+        $postData = $request-&gt;getPostParams();
+        $email = $postData['email'];
+        $nickname = $postData['nickname'];
+        $password = $postData['password'];
+        $userId = $request-&gt;getGetParams()['id'];
+        $connection = Base::instance()-&gt;getDBConnectionLink();
+
+        $sqlQuery = &quot;UPDATE survey_db.Users 
+             SET email = '$email', nickname = '$nickname', password = '$password' 
+             WHERE id = $userId&quot;;
+
+        $res = mysqli_query($connection, $sqlQuery);
+
+        if ($res) {
+            echo &quot;Successful Updates&quot;;
+        } else {
+            echo &quot;Error&quot; . mysqli_error($connection);
+        }
+    }
+}
+
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Останнє оновлення:</span> <span class="time">5/25/2024, 3:02:55 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/db-course-theme1/design/" class="prev">
+        Проектування інформаційного забезпечення
+      </a></span> <span class="next"><a href="/db-course-theme1/test/">
+        Тестування працездатності системи
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/db-course-theme1/assets/js/app.a3af5042.js" defer></script><script src="/db-course-theme1/assets/js/2.0091a01b.js" defer></script><script src="/db-course-theme1/assets/js/1.c514b243.js" defer></script><script src="/db-course-theme1/assets/js/38.610836e9.js" defer></script>
+  </body>
+</html>
