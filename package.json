@@ -3,7 +3,7 @@
   "version": "2.1.0",
   "main": "index.js",
   "description": "Databases course work template",
-  "repository": "https://github.com/shmatkoden/db-course-theme1",
+  "repository": "https://github.com/Rostislav901/db-course-theme1",
   "author": "Andrey Boldak <boldak.andrey@gmail.com>",
   "license": "ECL 2.0",
   "scripts": {
